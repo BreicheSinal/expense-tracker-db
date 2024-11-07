@@ -33,3 +33,4 @@ const note = document.getElementById("noteTransaction");
 // DISPLAY ELEMENTS
 const transactionsList = document.getElementById("transactions");
 const total = document.getElementById("total$");
+const resMsg = document.getElementById("resMsg");
