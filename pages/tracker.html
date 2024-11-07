@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="/styles/base.css" />
+    <link rel="stylesheet" href="/styles/utilities.css" />
+    <link rel="stylesheet" href="/styles/colors.css" />
+    <link rel="stylesheet" href="/styles/fonts.css" />
+    <link rel="stylesheet" href="/styles/tracker.css" />
+    <link
+      size="16x16"
+      rel="icon"
+      href="/assets/icons/LOGO.png"
+      type="image/png"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Tracker</title>
+  </head>
+  <body class="full-size">
+    <section class="full-width flex">
+      <div
+        class="sidebar flex column primary-bgColor space-evenly align-center"
+      >
+        <img
+          src="/assets/icons/income.png"
+          alt="Income Icon"
+          width="100px"
+          height="100px"
+          id="incomeBttn"
+        />
+
+        <img
+          src="/assets/icons/spending.png"
+          alt="Spending Icon"
+          width="100px"
+          height="100px"
+          id="expenseBttn"
+        />
+        <img
+          src="/assets/icons/all.png"
+          alt="Spending Icon"
+          width="100px"
+          height="100px"
+          id="totalBttn"
+        />
+      </div>
+
+      <div class="container flex column">
+        <div class="flex title space-between">
+          <h1 class="primary-color">EXPENSE TRACKER</h1>
+          <div class="flex gap justify-center align-center filters">
+            <div>
+              <p class="bold">TYPE</p>
+              <select id="filterType">
+                <option value="All">All</option>
+                <option value="Income">Income</option>
+                <option value="Expense">Expense</option>
+              </select>
+            </div>
+            <div>
+              <p class="bold">PRICE</p>
+              <select id="filterPrice">
+                <option value="None">None</option>
+                <option value="Minimum">Minimum</option>
+                <option value="Maximum">Maximum</option>
+              </select>
+            </div>
+            <div>
+              <p class="bold">DATE</p>
+              <select id="filterDate">
+                <option value="None">None</option>
+                <option value="Earliest">Earliest</option>
+                <option value="Latest">Latest</option>
+              </select>
+            </div>
+            <button class="button" id="applyBttn">Apply Filters</button>
+          </div>
+        </div>
+
+        <div class="flex align-center gap search-bar">
+          <p class="bold">SEARCH NOTE</p>
+          <input type="text" placeholder="Search note..." id="filterNote" />
+        </div>
+
+        <div class="flex align-center gap input">
+          <div>
+            <p class="bold">DATE</p>
+            <input type="date" id="dateTransaction" />
+          </div>
+          <div>
+            <p class="bold">TYPE</p>
+            <select id="typeTransaction">
+              <option value="Income">INCOME</option>
+              <option value="Expense">EXPENSE</option>
+            </select>
+          </div>
+          <div>
+            <p class="bold">NAME</p>
+            <input
+              type="text"
+              id="nameTransaction"
+              placeholder="Transaction Name"
+            />
+          </div>
+          <div>
+            <p class="bold">AMOUNT</p>
+            <input type="number" id="amountTransaction" placeholder="Amount" />
+          </div>
+          <div>
+            <p class="bold">NOTE</p>
+            <input type="text" id="noteTransaction" placeholder="Notes" />
+          </div>
+          <button class="button" id="addBttn">ADD</button>
+        </div>
+
+        <table class="full-width">
+          <thead class="primary-bgColor white-color">
+            <tr>
+              <th>DATE</th>
+              <th>TYPE</th>
+              <th>NAME</th>
+              <th>AMOUNT</th>
+              <th>NOTE</th>
+              <th colspan="2"></th>
+            </tr>
+          </thead>
+
+          <tbody class="primary-color" id="transactions"></tbody>
+        </table>
+
+        <table class="total">
+          <tbody>
+            <tr>
+              <td class="primary-bgColor white-color bold">TOTA BUDGET</td>
+              <td class="bold primary-color" id="total$">0</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <script src="/scripts/dom.js"></script>
+    <script src="/scripts/tracker.js"></script>
+  </body>
+</html>
