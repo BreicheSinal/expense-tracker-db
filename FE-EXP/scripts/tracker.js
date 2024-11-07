@@ -62,8 +62,8 @@ function displayTransaction() {
       <td>${transaction.nameInput}</td>
       <td>$ ${Number(transaction.amountInput).toLocaleString()}</td>
       <td>${transaction.noteInput}</td>
-      <td><button class="tableBttn edit full-width" onclick="editTransaction(${id})"> <img src="/assets/icons/edit.png" width="20px" height="20px"/> </button></td>
-      <td><button class="tableBttn delete full-width" onclick="deleteTransaction(${id})"> <img src="/assets/icons/delete.png" width="20px" height="20px"/> </button></td>
+      <td><button class="tableBttn edit full-width" onclick="editTransaction(${id})"> <img src="/FE-EXP/assets/icons/edit.png" width="20px" height="20px"/> </button></td>
+      <td><button class="tableBttn delete full-width" onclick="deleteTransaction(${id})"> <img src="/FE-EXP/assets/icons/delete.png" width="20px" height="20px"/> </button></td>
     `;
 
     row2.innerHTML = `
