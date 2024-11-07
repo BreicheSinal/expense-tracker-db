@@ -6,7 +6,7 @@ addBttn.addEventListener("click", function () {
   const noteInput = note.value;
 
   axios
-    .post("storeTransaction.php", {
+    .post("BE-EXP/php/storeTransaction.php", {
       date: dateInput,
       type: typeInput,
       name: nameInput,

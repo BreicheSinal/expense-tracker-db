@@ -1,1 +1,26 @@
+<?php
+
 include "connection.php";
+
+$query = $connection->prepare("SELECT * FROM users");
+
+$query->execute();
+
+$result = $query->get_result();
+
+if($result->num_rows > 0 ){
+    $records = [];
+
+    while($array = $result->fetch_assoc()){
+        $records[] = $array;
+    }
+
+    echo json_encode($records);
+}else{
+    $response = [
+        "message" => "empty result"
+    ];
+
+    echo json_encode($response);
+}
+?>
