@@ -5,7 +5,7 @@ const deletePath = "../assets/icons/delete.png";
 
 window.addEventListener("load", fetchTransactions);
 
-function deleteTransaction(id, transactions) {
+function deleteTransaction(id) {
   console.log(id); // correct
   axios
     .post("deleteTransaction.php", {
@@ -64,12 +64,15 @@ function fetchTransactions() {
           <td>${transaction.name_transaction}</td>
           <td>$ ${transaction.amount}</td>
           <td>${transaction.note}</td>
-          <td><button class="tableBttn edit full-width"> <img src="${editPath}" width="20px" height="20px"/> </button></td>
-        <td>
-        <button class="tableBttn delete full-width" onclick="deleteTransaction(${transaction.id}, transactions)">
-        <img src="${deletePath}" width="20px" height="20px"/> 
-      </button>
-      </td>
+          <td>
+          <button class="tableBttn edit full-width" onclick="editTransaction(${transaction.id})">
+          <img src="${editPath}" width="20px" height="20px"/>
+          </button>
+          </td>
+          <button class="tableBttn delete full-width" onclick="deleteTransaction(${transaction.id})">
+          <img src="${deletePath}" width="20px" height="20px"/> 
+          </button>
+          </td>
         `;
 
         row2.innerHTML = `
