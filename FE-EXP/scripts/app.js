@@ -5,6 +5,23 @@ const deletePath = "../assets/icons/delete.png";
 
 window.addEventListener("load", fetchTransactions);
 
+function deleteTransaction(id, transactions) {
+  console.log(id); // correct
+  axios
+    .post("deleteTransaction.php", {
+      id: id,
+    })
+    .then(function (response) {
+      console.log("Response:", response.data);
+
+      fetchTransactions();
+    })
+    .catch(function (error) {
+      console.error("Error:", error);
+      alert("An error occurred while deleting the transaction.");
+    });
+}
+
 function totalBudget(transactions) {
   let totalTransactions = 0;
   let expense = 0;
@@ -48,7 +65,11 @@ function fetchTransactions() {
           <td>$ ${transaction.amount}</td>
           <td>${transaction.note}</td>
           <td><button class="tableBttn edit full-width"> <img src="${editPath}" width="20px" height="20px"/> </button></td>
-          <td><button class="tableBttn delete full-width"> <img src="${deletePath}" width="20px" height="20px"/> </button></td>
+        <td>
+        <button class="tableBttn delete full-width" onclick="deleteTransaction(${transaction.id}, transactions)">
+        <img src="${deletePath}" width="20px" height="20px"/> 
+      </button>
+      </td>
         `;
 
         row2.innerHTML = `
