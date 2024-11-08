@@ -5,6 +5,28 @@ const deletePath = "../assets/icons/delete.png";
 
 window.addEventListener("load", fetchTransactions);
 
+function totalBudget(transactions) {
+  let totalTransactions = 0;
+  let expense = 0;
+  let income = 0;
+
+  if (transactions.length === 0) {
+    total.innerHTML = "$ 0";
+  } else {
+    transactions.forEach((transaction) => {
+      if (transaction.type_transaction === "expense") {
+        expense += transaction.amount;
+      } else if (transaction.type_transaction === "income") {
+        income += transaction.amount;
+      }
+    });
+
+    totalTransactions = income - expense;
+
+    total.innerHTML = `$ ${totalTransactions.toLocaleString()}`;
+  }
+}
+
 function fetchTransactions() {
   axios
     .post("getTransactions.php", {})
@@ -12,6 +34,8 @@ function fetchTransactions() {
       console.log("Response:", response.data);
 
       transactionsList.innerHTML = "";
+
+      totalBudget(response.data);
 
       response.data.forEach(function (transaction) {
         const row1 = document.createElement("tr");
@@ -64,25 +88,7 @@ addBttn.addEventListener("click", function () {
       console.log("Response:", response.data);
       resMsg.innerHTML = "Transaction Saved Successfully!";
 
-      const row1 = document.createElement("tr");
-      const row2 = document.createElement("tr");
-
-      row1.innerHTML = `
-        <td>${response.data.date}</td>
-        <td>${response.data.type}</td>
-        <td>${response.data.name}</td>
-        <td>$ ${response.data.amount}</td>
-        <td>${response.data.note}</td>
-        <td><button class="tableBttn edit full-width""> <img src="${editPath}" width="20px" height="20px"/> </button></td>
-        <td><button class="tableBttn delete full-width"> <img src="${deletePath}" width="20px" height="20px"/> </button></td>
-      `;
-
-      row2.innerHTML = `
-        <td colspan="7"><hr class="colorHr"></td>
-      `;
-
-      transactionsList.appendChild(row2);
-      transactionsList.appendChild(row1);
+      fetchTransactions();
     })
     .catch(function (error) {
       console.error("Error details:", error);
