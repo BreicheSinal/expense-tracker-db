@@ -1,3 +1,5 @@
+axios.defaults.baseURL = "http://localhost/expense-tracker-db/BE-EXP/php/";
+
 addBttn.addEventListener("click", function () {
   const dateInput = date.value;
   const typeInput = type.value;
@@ -5,8 +7,12 @@ addBttn.addEventListener("click", function () {
   const amountInput = amount.value;
   const noteInput = note.value;
 
+  if (!dateInput || !typeInput || !nameInput || !amountInput || !noteInput) {
+    resMsg.innerHTML = "All fields are required!";
+    return;
+  }
   axios
-    .post("BE-EXP/php/storeTransaction.php", {
+    .post("storeTransaction.php", {
       date: dateInput,
       type: typeInput,
       name: nameInput,
@@ -14,10 +20,11 @@ addBttn.addEventListener("click", function () {
       note: noteInput,
     })
     .then(function (response) {
+      console.log("Response:", response.data);
       resMsg.innerHTML = "Transaction Saved Successfully!";
     })
-    .catch(function(error){
-        resMsg.innerHTML = "Error Saving Transaction";
-
-    })
+    .catch(function (error) {
+      console.error("Error details:", error);
+      resMsg.innerHTML = "Error Saving Transaction";
+    });
 });

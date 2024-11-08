@@ -1,26 +1,37 @@
 <?php
 
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Headers: Content-Type");
+
 include "connection.php";
 
-$query = $connection->prepare("SELECT * FROM users");
+$_POST = json_decode(file_get_contents("php://input"),true);
 
-$query->execute();
-
-$result = $query->get_result();
-
-if($result->num_rows > 0 ){
-    $records = [];
-
-    while($array = $result->fetch_assoc()){
-        $records[] = $array;
-    }
-
-    echo json_encode($records);
-}else{
-    $response = [
-        "message" => "empty result"
-    ];
-
-    echo json_encode($response);
+if (empty($_POST['date']) || empty($_POST['type']) || empty($_POST['name']) || empty($_POST['amount']) || empty($_POST['note'])) {
+    echo "Error: Missing require data";
+    exit; 
 }
+
+$user_id = 2; 
+
+$date = $_POST['date'];
+$type = $_POST['type'];
+$name = $_POST['name'];
+$amount = $_POST['amount'];
+$note = $_POST['note'];
+
+$query = $connection->prepare("INSERT INTO transactions(date_transaction, type_transaction, name_transaction, amount, note, user_id) VALUES(?, ?, ?, ?, ?, ?)");
+
+$query->bind_param("sssdsi", $date, $type, $name, $amount, $note, $user_id);
+
+if ($query->execute()) {
+    echo "Success";
+} else {
+    echo "Error: " . $query->error;
+}
+
+$query->close();
+$connection->close();
+
 ?>

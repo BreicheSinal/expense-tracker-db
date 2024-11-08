@@ -1,4 +1,4 @@
-let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+/*let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 
 // NOTE FILTER FUNCTION
 filterNote.addEventListener("change", function () {
@@ -222,3 +222,4 @@ function checkDate(id, transactions) {
 
 // DISPLAYS TRANSACTION ON RELOAD
 displayTransaction();
+*/

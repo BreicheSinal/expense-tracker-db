@@ -11,9 +11,6 @@ const errorMsg = document.getElementById("errorMsg");
 /*EXPENSE TRACKER PAGE*/
 
 // BUTTONS
-const expenseBttn = document.getElementById("expenseBttn");
-const incomeBttn = document.getElementById("incomeBttn");
-const totalBttn = document.getElementById("totalBttn");
 const addBttn = document.getElementById("addBttn");
 const applyBttn = document.getElementById("applyBttn");
 
