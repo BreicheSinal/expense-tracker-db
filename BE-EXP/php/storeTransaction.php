@@ -26,9 +26,17 @@ $query = $connection->prepare("INSERT INTO transactions(date_transaction, type_t
 $query->bind_param("sssdsi", $date, $type, $name, $amount, $note, $user_id);
 
 if ($query->execute()) {
-    echo "Success";
+    $response = [
+        "id" => $query->insert_id,
+        "date" => $date,
+        "type" => $type,
+        "name" => $name,
+        "amount" => $amount,
+        "note" => $note
+    ];
+    echo json_encode($response);
 } else {
-    echo "Error: " . $query->error;
+    echo json_encode(["error" => "Error saving transaction: " . $query->error]);
 }
 
 $query->close();
