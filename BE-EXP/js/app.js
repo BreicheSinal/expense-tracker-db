@@ -60,7 +60,7 @@ window.addEventListener("load", fetchTransactions);
     });
 }*/
 
-/*function totalBudget(transactions) {
+function totalBudget(transactions) {
   let totalTransactions = 0;
   let expense = 0;
   let income = 0;
@@ -69,10 +69,17 @@ window.addEventListener("load", fetchTransactions);
     total.innerHTML = "$ 0";
   } else {
     transactions.forEach((transaction) => {
-      if (transaction.type_transaction === "expense") {
-        expense += transaction.amount;
-      } else if (transaction.type_transaction === "income") {
-        income += transaction.amount;
+      let amount = parseFloat(transaction.amount);
+
+      if (isNaN(amount)) {
+        console.error("Invalid amount detected:", transaction.amount);
+        return;
+      }
+
+      if (transaction.transaction_type === "expense") {
+        expense += amount;
+      } else if (transaction.transaction_type === "income") {
+        income += amount;
       }
     });
 
@@ -80,7 +87,7 @@ window.addEventListener("load", fetchTransactions);
 
     total.innerHTML = `$ ${totalTransactions.toLocaleString()}`;
   }
-}*/
+}
 
 function fetchTransactions() {
   axios
@@ -90,7 +97,7 @@ function fetchTransactions() {
 
       transactionsList.innerHTML = "";
 
-      //totalBudget(response.data);
+      totalBudget(response.data);
 
       response.data.forEach(function (transaction) {
         const row1 = document.createElement("tr");
