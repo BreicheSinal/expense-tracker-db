@@ -12,6 +12,7 @@
       href="assets/icons/LOGO.png"
       type="image/png"
     />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Expense Tracker | Login</title>
@@ -24,8 +25,14 @@
         class="full-size overflow-hidden relative-position"
       />-->
 
-      <div id="errorMsg" class="center errorMsg text-align bold primary-bgColor white-color"></div>
+      <!-- Error message container, hidden by default -->
+      <div
+        id="errorMsg"
+        class="center errorMsg text-align bold primary-bgColor white-color"
+        style="display: none"
+      ></div>
 
+      <!-- Login Form -->
       <div class="flex column center login white-bgColor">
         <img
           src="assets/icons/LOGO.png"
@@ -34,23 +41,50 @@
           height="100px"
           class="align-self"
         />
-        <div class="flex column gap primary-color">
-          <p>Usename</p>
-          <input type="text" placeholder="Username" id="username"/>
-        </div>
+
+        <h2 class="signUpt text-align primary-color">SIGN UP</h2>
+        <h2 class="logint text-align primary-color">LOGIN</h2>
 
         <div class="flex column gap primary-color">
-          <p>Password</p>
-          <input type="password" placeholder="Password" id="password" />
-        </div>
+          <div class="flex column gap primary-color">
+            <label for="username">Username</label>
+            <input type="text" placeholder="Username" id="username" required />
+          </div>
 
-        <div><hr style="margin-top: 10px;" class="primary-bgColor"></div>
-        <button class="button white-color" id="loginBttn">
+          <!-- Password Field -->
+          <div class="flex column gap primary-color">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              placeholder="Password"
+              id="password"
+              required
+            />
+          </div>
+
+          <!-- Divider -->
+          <div><hr style="margin-top: 10px" class="primary-bgColor" /></div>
+
+          <!-- Submit Button -->
+          <button
+            type="submit"
+            class="register button white-color"
+            id="loginBttn"
+          >
             LOG IN
-        </button>
+          </button>
+          <p class="text-align">OR</p>
+          <button
+            type="submit"
+            class="register button white-color"
+            id="signUpBttn"
+          >
+            SIGN UP
+          </button>
+        </div>
+      </div>
     </div>
 
-    <script src="scripts/dom.js"></script>
-    <script src="scripts/index.js"></script>
+    <script src="../BE-EXP/js/app.js"></script>
   </body>
 </html>

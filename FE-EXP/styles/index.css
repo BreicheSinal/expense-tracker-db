@@ -1,4 +1,4 @@
-body{
+body {
   background-color: #c9e7ff;
 }
 
@@ -28,10 +28,17 @@ body{
   z-index: 1;
 }
 
-.login > button {
-  margin: 10px 0px 15px 0px;
+.register {
   font-size: 16px;
   border: none;
   border-radius: 10px;
   padding: 8px;
+}
+
+.logint {
+  display: none;
+}
+
+.signUpt {
+  display: block;
 }

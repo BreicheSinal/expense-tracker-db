@@ -1,4 +1,4 @@
-axios.defaults.baseURL = "http://localhost/expense-tracker-db/BE-EXP/php/";
+/*axios.defaults.baseURL = "http://localhost/expense-tracker-db/BE-EXP/php/";
 
 const editPath = "../assets/icons/edit.png";
 const deletePath = "../assets/icons/delete.png";
@@ -119,3 +119,4 @@ addBttn.addEventListener("click", function () {
       resMsg.innerHTML = "Error Saving Transaction";
     });
 });
+*/

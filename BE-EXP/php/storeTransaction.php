@@ -13,7 +13,7 @@ if (empty($_POST['date']) || empty($_POST['type']) || empty($_POST['name']) || e
     exit; 
 }
 
-$user_id = 2; 
+$user_id = 1; 
 
 $date = $_POST['date'];
 $type = $_POST['type'];
@@ -21,7 +21,7 @@ $name = $_POST['name'];
 $amount = $_POST['amount'];
 $note = $_POST['note'];
 
-$query = $connection->prepare("INSERT INTO transactions(date_transaction, type_transaction, name_transaction, amount, note, user_id) VALUES(?, ?, ?, ?, ?, ?)");
+$query = $connection->prepare("INSERT INTO transactions(date_transaction, transaction_type, name, amount, note, user_id) VALUES(?, ?, ?, ?, ?, ?)");
 
 $query->bind_param("sssdsi", $date, $type, $name, $amount, $note, $user_id);
 
@@ -38,8 +38,3 @@ if ($query->execute()) {
 } else {
     echo json_encode(["error" => "Error saving transaction: " . $query->error]);
 }
-
-$query->close();
-$connection->close();
-
-?>

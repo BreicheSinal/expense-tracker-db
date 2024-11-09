@@ -6,7 +6,7 @@ header("Access-Control-Allow-Headers: Content-Type");
 
 include "connection.php";
 
-$query = $connection->prepare("SELECT * FROM transactions WHERE user_id=2");
+$query = $connection->prepare("SELECT * FROM transactions WHERE user_id=1");
 
 $query->execute();
 
